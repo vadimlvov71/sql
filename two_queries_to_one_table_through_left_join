@@ -1,4 +1,4 @@
-/////ALL open and closed ticket
+/////ALL open and closed tickets
 select table1.closedate AS "time", DATE_FORMAT(table1.closedate,'%b %y') AS metric, table1.count1 + 
 (CASE
     WHEN table2.count2 IS NULL
