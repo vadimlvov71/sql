@@ -1,0 +1,12 @@
+/////ALL open and closed ticket
+select table1.closedate AS "time", DATE_FORMAT(table1.closedate,'%b %y') AS metric, table1.count1 + 
+(CASE
+    WHEN table2.count2 IS NULL
+    THEN 0
+    ELSE table2.count2
+END) AS count2
+from
+(select COUNT(table1.id) as count1, table1.date, table1.closedate from glpi_tickets as table1 where users_id_lastupdater = 12535 AND status = 6 GROUP BY DATE_FORMAT(closedate,'%Y%m') ORDER BY closedate ASC) as table1
+LEFT JOIN
+(select COUNT(table2.id) as count2, table2.date from glpi_tickets  as table2 where users_id_lastupdater = 12535 AND status <> 6 GROUP BY DATE_FORMAT(date,'%Y%m') ORDER BY date ASC) as table2
+ON DATE_FORMAT(table1.closedate,'%Y%m') = DATE_FORMAT(table2.date,'%Y%m')
