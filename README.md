@@ -13,4 +13,22 @@
  
   * ![изображение](https://github.com/vadimlvov71/sql/assets/57807117/0de2df5d-7bf4-4cae-a5bb-9d0e7fe5853f)
 
+* result:
+ ```sh
+
+SELECT cc.id,
+c.name_uk as city_name,
+r.name_uk as region_name,
+a.name_uk as area_name 
+FROM `catalog_city` as cc
+LEFT JOIN cities as c
+ON cc.city_id = c.id
+LEFT JOIN regions as r
+ON c.id_region = r.id
+LEFT JOIN areas as a
+ON r.id_area = a.id;
+   ```
+
+![изображение](https://github.com/vadimlvov71/sql/assets/57807117/e090d422-1d60-4e65-9c0a-cdf45701248a)
+
 
