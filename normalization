@@ -1,0 +1,52 @@
+CREATE TABLE areas (
+id INT PRIMARY KEY AUTO_INCREMENT,
+name_ru VARCHAR(255) NOT NULL,
+name_uk VARCHAR(255) NOT NULL
+    );
+
+INSERT INTO areas (name_ru, name_uk)  
+SELECT distinct(area_name_ru), (area_name_uk)
+FROM `catalog_city`
+
+CREATE TABLE regions (
+ id INT PRIMARY KEY AUTO_INCREMENT,
+ name_uk VARCHAR(255) NOT NULL,
+name_ru VARCHAR(255) NOT NULL,
+id_area int (3),
+FOREIGN KEY (id_area) REFERENCES areas (id)
+    );
+
+INSERT INTO regions  (name_uk, name_ru, id_area)  
+SELECT distinct(cc.region_name_uk), cc.region_name_ru, a.id
+FROM `catalog_city` as cc
+LEFT JOIN areas as a
+ON cc.area_name_uk = a.name_uk
+
+CREATE TABLE cities (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  name_uk VARCHAR(255) NOT NULL,
+ name_ru VARCHAR(255) NOT NULL,
+
+id_region int (3),
+FOREIGN KEY (id_region) REFERENCES regions (id)
+    );
+
+INSERT INTO cities  (name_uk, name_ru, id_region)   
+SELECT distinct(cc.name_uk), cc.name_ru, r.id
+FROM `catalog_city` as cc
+LEFT JOIN regions as r
+ON cc.region_name_uk = r.name_uk
+
+UPDATE catalog_city
+LEFT JOIN cities ON catalog_city.name_uk = cities.name_uk
+SET catalog_city.name_uk = cities.id
+
+ALTER TABLE catalog_city CHANGE name_uk city_id int(11);
+
+ALTER TABLE catalog_city 
+DROP COLUMN name_ru,
+DROP COLUMN region_name_uk,
+ DROP COLUMN area_name_uk,
+ DROP COLUMN region_name_ru,
+ DROP COLUMN area_name_ru
+
