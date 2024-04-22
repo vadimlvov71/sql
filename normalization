@@ -50,3 +50,16 @@ DROP COLUMN region_name_uk,
  DROP COLUMN region_name_ru,
  DROP COLUMN area_name_ru
 
+as result:
+
+result
+
+SELECT cc.id, c.name_uk as city_name, r.name_uk as region_name,
+a.name_uk as area_name 
+FROM `catalog_city` as cc
+LEFT JOIN cities as c
+ON cc.city_id = c.id
+LEFT JOIN regions as r
+ON c.id_region = r.id
+LEFT JOIN areas as a
+ON r.id_area = a.id;
