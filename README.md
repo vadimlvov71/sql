@@ -2,6 +2,9 @@
 ##### About The Project 
 ##### 1. normalization of a datatabese
 ###### by raw sql queries - one table remade as a system of 4 tables relates with each other by forein keys
+![изображение](https://github.com/vadimlvov71/sql/assets/57807117/5e91af0b-e821-42a7-a4ce-349ff8c195e9)
+
+* [github normalization](https://github.com/vadimlvov71/sql/blob/main/normalization)
 * ![изображение](https://github.com/vadimlvov71/sql/assets/57807117/755d5305-1b46-466a-97a8-63ce99f48b4e)
 * result:
 * only one foreign key:
