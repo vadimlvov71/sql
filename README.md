@@ -34,4 +34,4 @@ ON r.id_area = a.id;
 
 ![изображение](https://github.com/vadimlvov71/sql/assets/57807117/e090d422-1d60-4e65-9c0a-cdf45701248a)
 
-
+* [github normalization](https://github.com/vadimlvov71/sql/blob/main/normalization)
